@@ -1204,22 +1204,10 @@
           <ul>
             {{/* Iterate over Identity Providers */}}
             {{ range $provider := .Providers }}
-
-            {{/* Set the name of the provider  */}}
-            {{ $providerName := $provider.Name }}
-
-            {{/* Set a custom display name for a known provider  */}}
-            {{ if eq $providerName "my_htpasswd_provider" }}
-            {{ $providerName = "HTPasswd Login" }}
-            {{ end }}
-
-            {{/* Show providers that are not kube:admin  */}}
-            {{ if ne $provider.Name "kube:admin" }}
             <li class="idp">
               <a href="{{$provider.URL}}" class="pf-c-button pf-m-secondary pf-m-block"
-                title="Log in with {{$providerName}}">{{$providerName}}</a>
+                title="Log in with {{$provider.Name}}">{{$provider.Name}}</a>
             </li>
-            {{ end }}
             {{ end }}
           </ul>
         </div>
