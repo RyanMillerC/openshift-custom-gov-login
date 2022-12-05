@@ -6,9 +6,10 @@ OpenShift has 3 customizable login pages:
 * Providers - Page shows a list of available authentication providers
 * Error - Page shows when a login error occurs
 
-This repo contains code to customize the Login and Providers pages with the
-United States Government (USG) consent banner required on USG owned information
-systems. [Reference](https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2017-12-14/finding/V-72225).
+This repo contains code to customize the OpenShift Login and Providers pages
+with the United States Government (USG) consent banner required on USG owned
+information systems.
+[Reference](https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2017-12-14/finding/V-72225).
 
 ## Screenshots
 
