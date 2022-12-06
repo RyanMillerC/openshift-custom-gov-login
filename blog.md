@@ -3,8 +3,7 @@
 OpenShift allows for customization of the login to meet a customer's requirements.
 One requirement for United States Government customers is to display a legal acknowledgment to users before they sign in. ([USG Banner Reference])
 
-As a user goes through the OpenShift authentication process, there are three
-distinct pages that could be displayed:
+As a user goes through the OpenShift authentication process, there are three distinct pages that could be displayed:
 
 ### Login (`login.html`)
 
@@ -90,11 +89,11 @@ Once the operator reports back *"Ready"*, log out of OpenShift, and navigate bac
 
 It should look like this if only one authentication provider (kube:admin or htpasswd) is configured:
 
-![Login page screenshot](login.png)
+![Customized Login page screenshot](login-custom.png)
 
 It should look like this if multiple authentication providers are configured:
 
-![Providers page screenshot](providers.png)
+![Customized Providers page screenshot](providers-custom.png)
 
 ## Bonus: Customize the Login Page Across a Multi-Cluster Fleet
 
