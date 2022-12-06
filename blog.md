@@ -3,7 +3,9 @@
 OpenShift allows for customization of the login to meet a customer's requirements.
 One requirement for United States Government customers is to display a legal acknowledgment to users before they sign in. ([USG Banner Reference])
 
-As a user goes through the OpenShift authentication process, there are three distinct pages that could be displayed:
+This post details how to customize the OpenShift login pages.
+
+As a user goes through the OpenShift authentication process, there are three distinct pages that could be displayed.
 
 ### Login (`login.html`)
 
@@ -27,7 +29,7 @@ For this use case it's not necessary to customize the error page.
 
 ## Configuration
 
-Depending on how a cluster is configured, both the login and providers pages may need to be customized to show the acknowledgment.
+Depending on how authentication is configured for a given cluster, both the login and providers pages may need to be customized to show the acknowledgment.
 It doesn't hurt to customize both even if one of those two pages is never shown to a user.
 
 The OpenShift documentation details the process to customize the login screen under the [Customizing the login page] section.
