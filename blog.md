@@ -1,42 +1,43 @@
-# Custom OpenShift Login Page with USG Banner
+# Customize OpenShift's Login with USG Banner
 
-OpenShift allows for customization of the login to meet a customer's requirements.
-One requirement for United States Government customers is to display a legal acknowledgment to users before they sign in. ([USG Banner Reference])
+OpenShift allows for customization the login pages to meet a customer's requirements.
+One requirement for United States Government (USG) customers is to display a legal acknowledgment to users before they sign in. ([USG Banner Reference])
+This post steps through the process to customize the OpenShift login with the USG legal banner.
 
-This post details how to customize the OpenShift login pages.
-
-As a user goes through the OpenShift authentication process, there are three distinct pages that could be displayed.
+The OpenShift login screen is comprised of 3 distinct pages: Login, Providers, and Error.
 
 ### Login (`login.html`)
 
 ![Default Login page](login.png)
 
-This page contains the username/password form used for htpasswd and kube:admin authentication.
+The Login page contains the username/password form used for local authentication, like htpasswd or kube:admin providers.
+This is the page you see on a fresh cluster install when only kube:admin authentication is enabled.
+If only one local authentication method is configured, this page will be displayed when an unauthenticated user attempts to access the console.
 
 ### Providers (`providers.html`)
 
 ![Default Providers page](providers.png)
 
-This page contains a list of available authentication providers.
-It is used when more than one authentication provider is configured in OpenShift.
+The Providers page contains a list of available authentication providers.
+It is only displayed when two or more authentication providers are configured in OpenShift.
+If two or more authentication provides are configured, this page will be displayed when an unauthenticated user attempts to access the console.
 
 ### Error (`error.html`)
 
 ![Default Error page](error.png)
 
-This page is displayed when an authentication error occurs.
+The Error page is displayed when an authentication error occurs.
 For this use case it's not necessary to customize the error page.
 
 ## Configuration
 
-Depending on how authentication is configured for a given cluster, both the login and providers pages may need to be customized to show the acknowledgment.
-It doesn't hurt to customize both even if one of those two pages is never shown to a user.
+Given the above information, both the login and providers pages may need to be customized to show the acknowledgment.
+It doesn't hurt to customize both pages, even if one of those two pages is never shown to a user.
 
-The OpenShift documentation details the process to customize the login screen under the [Customizing the login page] section.
+The OpenShift documentation details the process to customize the login screen under [Customizing the login page].
 The process from the docs starts with bare, unstyled pages for login, providers, and error.
 
-Unless your organization has a specific theme to apply, it's easier to grab the default theme OpenShift uses and customize that.
-From a running OpenShift cluster, it's possible to pull the code used for the default theme.
+Unless your organization has a specific theme to apply, it's easier to grab the default pages directly from the authentication pods.
 
 ```bash
 POD=$(oc get pods -n openshift-authentication -o name | head -n 1)
@@ -46,7 +47,7 @@ oc exec -n openshift-authentication "$POD" -- cat /var/config/system/secrets/v4-
 oc exec -n openshift-authentication "$POD" -- cat /var/config/system/secrets/v4-0-config-system-ocp-branding-template/login.html > login.html
 ```
 
-Edit both documents, login.html and providers.html. In the body, under the `<div class="pf-c-login__main-body">` tag, add:
+Edit both documents, *login.html* and *providers.html*. In the body, under `<div class="pf-c-login__main-body">`, add:
 
 ```html
 <p>
@@ -63,7 +64,7 @@ Edit both documents, login.html and providers.html. In the body, under the `<div
 
 Save the changes to both documents.
 
-To apply the customizations to OpenShift, each document needs to be put into a secret in the *openshift-config* namespace.
+To apply the customization to OpenShift, each document needs to be put into a secret in the *openshift-config* namespace.
 
 ```bash
 oc create secret generic login-template --from-file=login.html -n openshift-config
