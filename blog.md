@@ -6,20 +6,30 @@ One requirement for United States Government customers is to display a legal ack
 As a user goes through the OpenShift authentication process, there are three
 distinct pages that could be displayed:
 
-* Login (`login.html`)
-    * This page contains the username/password form used for htpasswd and
-      kube:admin authentication.
-* Providers (`providers.html`)
-    * This page contains a list of available authentication providers. It is
-      used when more than one authentication provider is configured in
-      OpenShift.
-* Error (`error.html`)
-    * This page is displayed when an authentication error occurs.
+### Login (`login.html`)
+
+![Default Login page](login.png)
+
+This page contains the username/password form used for htpasswd and kube:admin authentication.
+
+### Providers (`providers.html`)
+
+![Default Providers page](providers.png)
+
+This page contains a list of available authentication providers.
+It is used when more than one authentication provider is configured in OpenShift.
+
+### Error (`error.html`)
+
+![Default Error page](error.png)
+
+This page is displayed when an authentication error occurs.
+For this use case it's not necessary to customize the error page.
+
+## Configuration
 
 Depending on how a cluster is configured, both the login and providers pages may need to be customized to show the acknowledgment.
 It doesn't hurt to customize both even if one of those two pages is never shown to a user.
-
-For this use case it's not necessary to customize the error page.
 
 The OpenShift documentation details the process to customize the login screen under the [Customizing the login page] section.
 The process from the docs starts with bare, unstyled pages for login, providers, and error.
