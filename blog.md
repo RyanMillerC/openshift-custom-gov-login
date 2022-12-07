@@ -3,6 +3,7 @@
 OpenShift allows for customization of the login pages to meet a customer's requirements.
 One requirement for United States Government (USG) customers is to display a legal acknowledgment to users before they are authenticated [USG Banner Reference]).
 This post steps through the process to customize the OpenShift login with an acknowledgment.
+Code from this post is available in [this repo][repo].
 
 OpenShift's login screen is comprised of 3 distinct pages: Login, Providers, and Error.
 
@@ -120,7 +121,7 @@ The error page will look like this:
 This customization can be deployed through Advanced Cluster Management (ACM) for Kubernetes.
 Using *Governance Policy* in ACM, an OpenShift administrator can configure login customizations once, then deploy to all clusters.
 
-The policy object is too lengthy to post inline. Instead, grab the policy code [here](link)!
+The policy object is too lengthy to post inline. Instead, grab [acm-policy.yaml].
 
 Log in to the ACM hub cluster with `oc` and deploy *acm-policy.yaml*.
 
@@ -134,3 +135,5 @@ After deploying, check the status on the *Governance* page in the ACM web consol
 
 [Customizing the login page]: https://docs.openshift.com/container-platform/4.11/web_console/customizing-the-web-console.html#customizing-the-login-page_customizing-web-console
 [USG Banner Reference]: https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2017-12-14/finding/V-72225
+[repo]: https://github.com/RyanMillerC/openshift-custom-gov-login
+[acm-policy.yaml]: https://github.com/RyanMillerC/openshift-custom-gov-login/blob/blog/acm-policy.yaml
