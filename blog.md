@@ -1,8 +1,8 @@
 # Customize OpenShift's Login with USG Banner
 
-OpenShift allows for customization of the login pages to meet a customer's requirements.
-One requirement for United States Government (USG) customers is to display a legal acknowledgment to users before they are authenticated [USG Banner Reference]).
-This post steps through the process to customize the OpenShift login with an acknowledgment.
+OpenShift allows for customization of the console login pages to meet a customer's requirements.
+One requirement for United States Government (USG) customers is to display a legal acknowledgment to users before they are authenticated ([USG Banner Reference]).
+This post steps through the process to customize OpenShift login pages with an acknowledgment.
 Code from this post is available in [this repo][repo].
 
 OpenShift's login screen is comprised of 3 distinct pages: Login, Providers, and Error.
