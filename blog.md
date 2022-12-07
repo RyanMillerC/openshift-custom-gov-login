@@ -34,7 +34,7 @@ Depending on how cluster authentication is configured, both the login and provid
 It doesn't hurt to customize all three pages though, even if some of the pages are never shown to a user.
 
 OpenShift documentation details the process to customize the login screen under [Customizing the login page].
-The process from the docs starts with bare, unstyled pages for login, providers, and error.
+This process from the docs starts with bare, unstyled pages for login, providers, and error.
 Unless your organization has a specific theme to apply, it's easier to grab the default themed pages directly from the authentication pods.
 
 ```bash
@@ -62,7 +62,7 @@ Edit all three documents, *errors.html*, *login.html*, and *providers.html*. In 
 </ul>
 ```
 
-Save the changes to the documents.
+Save the changes to all documents.
 
 To apply the customization to OpenShift, each document needs to be put into a secret in the *openshift-config* namespace.
 
