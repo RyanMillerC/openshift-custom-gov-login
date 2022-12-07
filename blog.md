@@ -1,6 +1,6 @@
 # Customize OpenShift's Login with USG Banner
 
-OpenShift allows for customization of the console login pages to meet a customer's requirements.
+OpenShift allows for customization of the console login pages to meet customer requirements.
 One requirement for United States Government (USG) customers is to display a legal acknowledgment to users before they are authenticated ([USG Banner Reference]).
 This post steps through the process to customize OpenShift login pages with an acknowledgment.
 Code from this post is available in [this repo][repo].
@@ -19,7 +19,7 @@ If only one local authentication method is configured, this page will be display
 
 The Providers page contains a list of available authentication providers.
 It is only displayed when two or more authentication providers are configured in OpenShift.
-If two or more authentication provides are configured, this page will be displayed when an unauthenticated user attempts to access the console.
+If two or more authentication providers are configured, this page will be displayed when an unauthenticated user attempts to access the console.
 
 ![Default Providers page](screenshots/providers.png)
 
@@ -31,8 +31,8 @@ The Error page is only displayed when authentication errors occur.
 
 ## Configuration
 
-Depending on how cluster authentication is configured, both the login and providers pages may need to be customized to show the acknowledgment.
-It doesn't hurt to customize all three pages though, even if some of the pages are never shown to a user.
+Depending on how cluster authentication is configured, both login and providers pages may need to be customized to show the acknowledgment.
+It doesn't hurt to customize all three pages though, even if one of the pages is never shown to a user.
 
 OpenShift documentation details the process to customize the login screen under [Customizing the login page].
 This process from the docs starts with bare, unstyled pages for login, providers, and error.
@@ -75,7 +75,7 @@ oc create secret generic login-template --from-file=login.html -n openshift-conf
 oc create secret generic providers-template --from-file=providers.html -n openshift-config
 ```
 
-Finally, patch the *oauth/cluster* object to tell OpenShift use the new templates.
+Finally, patch the *oauth/cluster* object to tell OpenShift to use the new templates.
 
 ```bash
 oc patch oauths cluster --type=json -p='[ { "op": "add", "path": "/spec/templates", "value": { "error": { "name": "error-template" }, "providerSelection": { "name": "providers-template" }, "login": { "name": "login-template" } } } ]'
