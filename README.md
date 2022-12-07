@@ -10,15 +10,15 @@ systems.
 
 ### Login
 
-![Login page screenshot](screenshot/login.png)
+![Customized Login page screenshot](screenshots/login-custom.png)
 
 ### Providers
 
-![Providers page screenshot](screenshot/providers.png)
+![Customized Providers page screenshot](screenshots/providers-custom.png)
 
 ### Error
 
-![Error page screenshot](screenshot/error.png)
+![Customized Error page screenshot](screenshots/errors-custom.png)
 
 ## How to Deploy
 
