@@ -1,25 +1,24 @@
 # Customize OpenShift Login Screen with USG Banner
 
-OpenShift has 3 customizable login pages:
+This repo contains code to customize OpenShift's Login pages with the United
+States Government (USG) consent banner required on USG owned information
+systems.
 
-* Login - Page for username/password entry (Used for htpasswd and kube:admin login)
-* Providers - Page shows a list of available authentication providers
-* Error - Page shows when a login error occurs
-
-This repo contains code to customize the OpenShift Login and Providers pages
-with the United States Government (USG) consent banner required on USG owned
-information systems.
 [Reference](https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2017-12-14/finding/V-72225).
 
 ## Screenshots
 
-### Login Page
+### Login
 
-![Login page screenshot](login.png)
+![Login page screenshot](screenshot/login.png)
 
-### Providers Page
+### Providers
 
-![Providers page screenshot](providers.png)
+![Providers page screenshot](screenshot/providers.png)
+
+### Error
+
+![Error page screenshot](screenshot/error.png)
 
 ## How to Deploy
 
