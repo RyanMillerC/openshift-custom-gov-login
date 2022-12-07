@@ -12,7 +12,7 @@ The Login page contains the username/password form used for local authentication
 This is the page you see on a fresh cluster install when only kube:admin authentication is enabled.
 If only one local authentication method is configured, this page will be displayed when an unauthenticated user attempts to access the console.
 
-![Default Login page](login.png)
+![Default Login page](screenshots/login.png)
 
 ### Providers (`providers.html`)
 
@@ -20,13 +20,13 @@ The Providers page contains a list of available authentication providers.
 It is only displayed when two or more authentication providers are configured in OpenShift.
 If two or more authentication provides are configured, this page will be displayed when an unauthenticated user attempts to access the console.
 
-![Default Providers page](providers.png)
+![Default Providers page](screenshots/providers.png)
 
 ### Error (`errors.html`)
 
 The Error page is only displayed when authentication errors occur.
 
-![Default Error page](errors.png)
+![Default Error page](screenshots/errors.png)
 
 ## Configuration
 
@@ -105,15 +105,15 @@ Once the operator reports back *"Ready"*, log out of OpenShift and navigate back
 
 It should redirect you to a login page that looks like this if only one authentication provider (kube:admin or htpasswd) is configured:
 
-![Customized Login page screenshot](login-custom.png)
+![Customized Login page screenshot](screenshots/login-custom.png)
 
 It should look like this if multiple authentication providers are configured:
 
-![Customized Providers page screenshot](providers-custom.png)
+![Customized Providers page screenshot](screenshots/providers-custom.png)
 
 The error page will look like this:
 
-![Customized Error page screenshot](errors-custom.png)
+![Customized Error page screenshot](screenshots/errors-custom.png)
 
 ## Bonus: Customize the Login Page Across a Multi-Cluster Fleet
 
