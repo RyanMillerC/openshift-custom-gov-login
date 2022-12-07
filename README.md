@@ -24,7 +24,7 @@ systems.
 Log in to the OpenShift cluster on the command line with `oc`. Then run,
 
 ```bash
-./scripts/deploy.sh
+make deploy
 ```
 
 ## How to Delete
@@ -32,5 +32,5 @@ Log in to the OpenShift cluster on the command line with `oc`. Then run,
 Log in to the OpenShift cluster on the command line with `oc`. Then run,
 
 ```bash
-./scripts/delete.sh
+make delete
 ```
