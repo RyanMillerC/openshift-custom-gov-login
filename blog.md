@@ -120,9 +120,9 @@ The error page will look like this:
 This customization can be deployed through Advanced Cluster Management (ACM) for Kubernetes.
 Using *Governance Policy* in ACM, an OpenShift administrator can configure login customizations once, then deploy to all clusters.
 
-The policy object is lengthy, so I won't post it inline. Instead, grab the policy code [here](link)!
+The policy object is too lengthy to post inline. Instead, grab the policy code [here](link)!
 
-Log in to the ACM hub cluster with `oc`.
+Log in to the ACM hub cluster with `oc` and deploy *acm-policy.yaml*.
 
 ```bash
 oc create -f acm-policy.yaml
