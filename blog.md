@@ -1,53 +1,53 @@
 # Customize OpenShift's Login with USG Banner
 
-OpenShift allows for customization the login pages to meet a customer's requirements.
-One requirement for United States Government (USG) customers is to display a legal acknowledgment to users before they sign in. ([USG Banner Reference])
-This post steps through the process to customize the OpenShift login with the USG legal banner.
+OpenShift allows for customization of the login pages to meet a customer's requirements.
+One requirement for United States Government (USG) customers is to display a legal acknowledgment to users before they are authenticated [USG Banner Reference]).
+This post steps through the process to customize the OpenShift login with an acknowledgment.
 
-The OpenShift login screen is comprised of 3 distinct pages: Login, Providers, and Error.
+OpenShift's login screen is comprised of 3 distinct pages: Login, Providers, and Error.
 
 ### Login (`login.html`)
 
-![Default Login page](login.png)
-
-The Login page contains the username/password form used for local authentication, like htpasswd or kube:admin providers.
+The Login page contains the username/password form used for local authentication, such as htpasswd or kube:admin.
 This is the page you see on a fresh cluster install when only kube:admin authentication is enabled.
 If only one local authentication method is configured, this page will be displayed when an unauthenticated user attempts to access the console.
 
-### Providers (`providers.html`)
+![Default Login page](login.png)
 
-![Default Providers page](providers.png)
+### Providers (`providers.html`)
 
 The Providers page contains a list of available authentication providers.
 It is only displayed when two or more authentication providers are configured in OpenShift.
 If two or more authentication provides are configured, this page will be displayed when an unauthenticated user attempts to access the console.
 
-### Error (`error.html`)
+![Default Providers page](providers.png)
 
-![Default Error page](error.png)
+### Error (`errors.html`)
 
-The Error page is displayed when an authentication error occurs.
-For this use case it's not necessary to customize the error page.
+The Error page is only displayed when authentication errors occur.
+
+![Default Error page](errors.png)
 
 ## Configuration
 
-Given the above information, both the login and providers pages may need to be customized to show the acknowledgment.
-It doesn't hurt to customize both pages, even if one of those two pages is never shown to a user.
+Depending on how cluster authentication is configured, both the login and providers pages may need to be customized to show the acknowledgment.
+It doesn't hurt to customize all three pages though, even if some of the pages are never shown to a user.
 
-The OpenShift documentation details the process to customize the login screen under [Customizing the login page].
+OpenShift documentation details the process to customize the login screen under [Customizing the login page].
 The process from the docs starts with bare, unstyled pages for login, providers, and error.
-
-Unless your organization has a specific theme to apply, it's easier to grab the default pages directly from the authentication pods.
+Unless your organization has a specific theme to apply, it's easier to grab the default themed pages directly from the authentication pods.
 
 ```bash
 POD=$(oc get pods -n openshift-authentication -o name | head -n 1)
 
-oc exec -n openshift-authentication "$POD" -- cat /var/config/system/secrets/v4-0-config-system-ocp-branding-template/providers.html > providers.html
+oc exec -n openshift-authentication "$POD" -- cat /var/config/system/secrets/v4-0-config-system-ocp-branding-template/errors.html > errors.html
 
 oc exec -n openshift-authentication "$POD" -- cat /var/config/system/secrets/v4-0-config-system-ocp-branding-template/login.html > login.html
+
+oc exec -n openshift-authentication "$POD" -- cat /var/config/system/secrets/v4-0-config-system-ocp-branding-template/providers.html > providers.html
 ```
 
-Edit both documents, *login.html* and *providers.html*. In the body, under `<div class="pf-c-login__main-body">`, add:
+Edit all three documents, *errors.html*, *login.html*, and *providers.html*. In the body of each document, under `<div class="pf-c-login__main-body">`, add:
 
 ```html
 <p>
@@ -62,11 +62,13 @@ Edit both documents, *login.html* and *providers.html*. In the body, under `<div
 </ul>
 ```
 
-Save the changes to both documents.
+Save the changes to the documents.
 
 To apply the customization to OpenShift, each document needs to be put into a secret in the *openshift-config* namespace.
 
 ```bash
+oc create secret generic error-template --from-file=errors.html -n openshift-config
+
 oc create secret generic login-template --from-file=login.html -n openshift-config
 
 oc create secret generic providers-template --from-file=providers.html -n openshift-config
@@ -75,28 +77,43 @@ oc create secret generic providers-template --from-file=providers.html -n opensh
 Finally, patch the *oauth/cluster* object to tell OpenShift use the new templates.
 
 ```bash
-oc patch oauths cluster --type=json -p='[ { "op": "add", "path": "/spec/templates", "value": { "providerSelection": { "name": "providers-template" }, "login": { "name": "login-template" } } } ]'
+oc patch oauths cluster --type=json -p='[ { "op": "add", "path": "/spec/templates", "value": { "error": { "name": "error-template" }, "providerSelection": { "name": "providers-template" }, "login": { "name": "login-template" } } } ]'
+```
+
+After the patch, `oc get oauth cluster -o yaml` should contain:
+
+```yaml
+spec:
+  templates:
+    error:
+      name: error-template
+    login:
+      name: login-template
+    providerSelection:
+      name: providers-template
 ```
 
 Patching the oauth/cluster object will cause the authentication cluster operator to deploy new pods into the *openshift-authentication* namespace.
-This rollout brings down the pods one at a time so it may take several minutes for the rollout to complete.
+This rollout brings down pods one at a time so it may take several minutes for the rollout to complete.
 You can monitor the cluster operator progress with:
 
 ```bash
-oc get co
+oc get co  # "co" is short for "clusteroperator"
 ```
 
-(`co` is short for clusteroperator)
+Once the operator reports back *"Ready"*, log out of OpenShift and navigate back to the console.
 
-Once the operator reports back *"Ready"*, log out of OpenShift, and navigate back to the login screen.
-
-It should look like this if only one authentication provider (kube:admin or htpasswd) is configured:
+It should redirect you to a login page that looks like this if only one authentication provider (kube:admin or htpasswd) is configured:
 
 ![Customized Login page screenshot](login-custom.png)
 
 It should look like this if multiple authentication providers are configured:
 
 ![Customized Providers page screenshot](providers-custom.png)
+
+The error page will look like this:
+
+![Customized Error page screenshot](errors-custom.png)
 
 ## Bonus: Customize the Login Page Across a Multi-Cluster Fleet
 
