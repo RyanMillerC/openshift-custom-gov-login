@@ -9,22 +9,22 @@ systems.
 
 ### Login
 
-![Customized Login page screenshot](screenshots/login-custom.png)
+![Customized Login page screenshot](blog/screenshots/login-custom.png)
 
 ### Providers
 
-![Customized Providers page screenshot](screenshots/providers-custom.png)
+![Customized Providers page screenshot](blog/screenshots/providers-custom.png)
 
 ### Error
 
-![Customized Error page screenshot](screenshots/errors-custom.png)
+![Customized Error page screenshot](blog/screenshots/errors-custom.png)
 
 ## How to Deploy
 
 Log in to the OpenShift cluster on the command line with `oc`. Then run,
 
 ```bash
-./deploy.sh
+./scripts/deploy.sh
 ```
 
 ## How to Delete
@@ -32,5 +32,5 @@ Log in to the OpenShift cluster on the command line with `oc`. Then run,
 Log in to the OpenShift cluster on the command line with `oc`. Then run,
 
 ```bash
-./delete.sh
+./scripts/delete.sh
 ```
