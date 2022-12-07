@@ -3,7 +3,6 @@
 This repo contains code to customize OpenShift's Login pages with the United
 States Government (USG) consent banner required on USG owned information
 systems.
-
 [Reference](https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2017-12-14/finding/V-72225).
 
 ## Screenshots
