@@ -136,4 +136,4 @@ After deploying, check the status on the *Governance* page in the ACM web consol
 [Customizing the login page]: https://docs.openshift.com/container-platform/4.11/web_console/customizing-the-web-console.html#customizing-the-login-page_customizing-web-console
 [USG Banner Reference]: https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2017-12-14/finding/V-72225
 [repo]: https://github.com/RyanMillerC/openshift-custom-gov-login
-[acm-policy.yaml]: https://github.com/RyanMillerC/openshift-custom-gov-login/blob/blog/acm-policy.yaml
+[acm-policy.yaml]: https://github.com/RyanMillerC/openshift-custom-gov-login/blob/main/acm-policy.yaml
