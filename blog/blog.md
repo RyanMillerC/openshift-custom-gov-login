@@ -1,9 +1,9 @@
-# Customize OpenShift's Login with USG Banner
+# Customize OpenShift Login with US Government Banner
 
-OpenShift allows for customization of the console login pages to meet customer requirements.
+Red Hat OpenShift allows for customization of the console login pages to meet customer requirements.
 One requirement for United States Government (USG) customers is to display a legal acknowledgment to users before they are authenticated ([USG Banner Reference]).
 This post steps through the process to customize OpenShift login pages with an acknowledgment.
-Code from this post is available in [this repo].
+Code from this post is available on GitHub [here][openshift-custom-gov-login].
 
 OpenShift's login screen is comprised of 3 distinct pages: Login, Providers, and Error.
 
@@ -145,4 +145,4 @@ Note that, same as the manual configuration, it will take a few minutes for the 
 [Red Hat Advanced Cluster Management (ACM) for Kubernetes]: https://www.redhat.com/en/technologies/management/advanced-cluster-management
 [USG Banner Reference]: https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2017-12-14/finding/V-72225
 [acm-policy.yaml]: https://github.com/RyanMillerC/openshift-custom-gov-login/blob/main/acm-policy.yaml
-[this repo]: https://github.com/RyanMillerC/openshift-custom-gov-login
+[openshift-custom-gov-login]: https://github.com/RyanMillerC/openshift-custom-gov-login
