@@ -38,6 +38,8 @@ OpenShift documentation details the process to customize the login screen under 
 This process from the docs starts with bare, unstyled pages for login, providers, and error.
 Unless your organization has a specific theme to apply, it's easier to grab the default themed pages directly from the authentication pods.
 
+Log into OpenShift on the command line with `oc` and run:
+
 ```bash
 POD=$(oc get pods -n openshift-authentication -o name | head -n 1)
 
@@ -65,7 +67,7 @@ Edit all three documents, *errors.html*, *login.html*, and *providers.html*. In 
 
 Save the changes to all documents.
 
-To apply the customization to OpenShift, each document needs to be put into a secret in the *openshift-config* namespace.
+To apply the customizations to OpenShift, each document needs to be put into a secret in the *openshift-config* namespace.
 
 ```bash
 oc create secret generic error-template --from-file=errors.html -n openshift-config
@@ -144,5 +146,5 @@ Note that, same as the manual configuration, it will take a few minutes for the 
 [Customizing the login page]: https://docs.openshift.com/container-platform/4.11/web_console/customizing-the-web-console.html#customizing-the-login-page_customizing-web-console
 [Red Hat Advanced Cluster Management (ACM) for Kubernetes]: https://www.redhat.com/en/technologies/management/advanced-cluster-management
 [USG Banner Reference]: https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2017-12-14/finding/V-72225
-[acm-policy.yaml]: https://github.com/RyanMillerC/openshift-custom-gov-login/blob/main/acm-policy.yaml
+[acm-policy.yaml]: https://github.com/RyanMillerC/openshift-custom-gov-login/blob/main/acm/acm-policy.yaml
 [openshift-custom-gov-login]: https://github.com/RyanMillerC/openshift-custom-gov-login
