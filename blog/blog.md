@@ -123,9 +123,10 @@ The error page will look like this:
 This customization can be deployed through [Red Hat Advanced Cluster Management (ACM) for Kubernetes].
 Using *Governance Policy* in ACM, an OpenShift administrator can configure login customizations once, then deploy to all clusters.
 
-The policy object is too lengthy to post inline. Instead, grab [acm-policy.yaml] from GitHub.
-This file contains templates of the three authentication pages and the *oauth/cluster* configuration.
-The policy object targets all available clusters meaning each available cluster will have all 4 templates deployed to it.
+The policy object is too lengthy to post inline.
+Instead, grab [acm-policy.yaml] from GitHub.
+This file contains templates of the three authentication pages, base64 encoded in secrets, and the *oauth/cluster* configuration.
+The policy targets all available clusters, meaning each available cluster will have all 4 templates deployed to it.
 
 To deploy, log in to the ACM hub cluster with `oc`, `cd` to the directory with *acm-policy.yaml*, and run:
 
@@ -140,7 +141,7 @@ After deploying, check the status on the *Governance* page in the ACM web consol
 The status on all clusters will briefly show as non-compliant.
 Because the policy is set to enforce, within a few seconds, the policy will be pushed to all non-compliant clusters.
 
-One the templated resources exist on a cluster, it will report back as compliant.
+Once the template resources exist on a cluster, it will report back as compliant.
 Note that, same as the manual configuration, it will take a few minutes for the authentication operator to roll out new pods even after ACM shows a cluster as compliant.
 
 [Customizing the login page]: https://docs.openshift.com/container-platform/4.11/web_console/customizing-the-web-console.html#customizing-the-login-page_customizing-web-console
